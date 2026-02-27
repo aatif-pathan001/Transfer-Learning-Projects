@@ -1,6 +1,5 @@
 # Electrical Equipment Classification using Transfer Learning
-![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
 
 ## 📋 Overview
 
@@ -17,10 +16,10 @@ Achieved **99.58% accuracy** classifying electrical equipment using transfer lea
 ### Two Strategies Compared:
 
 #### 1. Feature Extraction (Frozen Base)
-![Feature Extraction](Feature_exttraction.drawio.svg)
+![Feature Extraction](results/Feature_exttraction.drawio.svg)
 
 #### 2. Full Fine-Tuning (All Layers)
-![Fine Tunning](Fine_tuning.drawio.svg)
+![Fine Tunning](results/Fine_tuning.drawio.svg)
 
 ## 📊 Results
 
@@ -32,15 +31,10 @@ Achieved **99.58% accuracy** classifying electrical equipment using transfer lea
 **Key Insight:** Transfer learning achieves near-perfect accuracy with 100x less data than training from scratch.
 
 ### Training Curves
-![Training Progress](results/training_curves.png)
-
-### Confusion Matrix
-![Confusion Matrix](results/confusion_matrix.png)
+![Training Progress](results/fine_tuning_curves.png) ![Training Progress](results/feature_extraction_curves.png)
 
 **Analysis:** Only 5 mistakes out of 1,200 validation images (99.58%)
 
-### Sample Predictions
-![Sample Results](results/sample_predictions.png)
 
 ## 🔬 Why Transfer Learning Works
 
@@ -58,7 +52,7 @@ Achieved **99.58% accuracy** classifying electrical equipment using transfer lea
 
 ## 🛠️ Technologies
 
-- **Framework:** PyTorch, torchvision
+- **Framework:** ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white), torchvision
 - **Architecture:** ResNet50 (25.6M parameters)
 - **Training:** AdamW optimizer, ReduceLROnPlateau scheduler
 - **Augmentation:** RandomResizedCrop, ColorJitter, RandomRotation
@@ -83,21 +77,44 @@ python predict.py --image test_images/transformer.jpg
 
 ### Dataset Structure
 
-## Approach
-Compared three strategies:
-1. Feature Extraction (frozen ResNet50 base)
-2. Full Fine-Tuning (all layers trainable)
-3. Gradual Unfreeze
+```
+data/electrical_equipment
+├── train/
+│       ├── Breaker/
+│       ├── Closed_blade_disconnect_switch/
+│       ├── Power_transformer/
+│       └── ...
+└── val/
+```
 
-## Results
-- Best accuracy: 
-- Training time: 
-- Dataset: 
 
-## Key Learnings
-- Transfer learning works with limited data
-- Fine-tuning gives best accuracy
-- Pre-trained ImageNet features transfer well
 
-## Technologies
-PyTorch, torchvision, ResNet50, Python
+## 📈 Ablation Study
+
+| Configuration | Val Accuracy | Notes |
+|--------------|-------------|-------|
+| Baseline (frozen) | 95.83% | Fast, good baseline |
+| Fine-tuning | **99.58%** | All layers |
+
+**Conclusion:** Discriminative LR is key for fine-tuning.
+
+
+## 📈 Future Improvements
+
+- [ ] Try EfficientNet (better efficiency)
+- [ ] Gradual unfreezing (layer-by-layer)
+- [ ] Test on edge devices (NVIDIA Jetson)
+- [ ] Expand to 20+ equipment types
+- [ ] Real-time detection in industrial settings
+
+## 👤 Author
+
+**Aatif Khan Pathan**  
+B.Tech Electrical Engineering | ML Engineer  
+Combining domain expertise with deep learning
+
+[LinkedIn](https://linkedin.com/in/aatif-khan-pathan) | [GitHub](https://github.com/aatif-pathan001)
+
+---
+
+*Week 1, Day 4: Transfer Learning Mastery - 99.58% Accuracy*
